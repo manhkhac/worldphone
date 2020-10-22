@@ -25,7 +25,7 @@
                 $sdt       = $_POST['sdt'];
                 $email     = $_POST['email'];
                 $gioi_tinh = $_POST['gioi_tinh'];
-                $ngsinh    = $_POST['ngsinh'];
+                $ngsinh    = strtotime($_POST['ngsinh']);
 
                 //check mail
                 if ($email != $rowInfo['email']) {
@@ -116,16 +116,16 @@
                     <input class="sua-user" type="text" value="<?php echo $rowInfo['dia_chi']; ?>" name="dia_chi"></div>
                 <div class="popup-themsp-left__input">
 
-                    <input class="sua-user" type="text" value="<?php echo $rowInfo['sdt']; ?>" name="sdt"></div>
+                    <input class="sua-user" type="number" value="<?php echo $rowInfo['sdt']; ?>" name="sdt"></div>
                 <div class="popup-themsp-left__input">
 
-                    <input class="sua-user" type="text" value="<?php echo $rowInfo['email']; ?>" name="email"></div>
+                    <input class="sua-user" type="email" value="<?php echo $rowInfo['email']; ?>" name="email"></div>
                 <div class="popup-themsp-left__input">
 
                     <input class="sua-user" type="text" value="<?php echo $rowInfo['gioi_tinh']; ?>" name="gioi_tinh"></div>
                 <div class="popup-themsp-left__input">
 
-                    <input class="sua-user" type="text" value="<?php echo $rowInfo['ngsinh']; ?>" name="ngsinh"></div>
+                    <input class="sua-user" type="text" value="<?php echo date('m/d/Y',$rowInfo['ngsinh']) ; ?>" name="ngsinh"></div>
             </div>
             <button type="submit" class="popup-themsp__btn" name="update_rowInfo" />Sửa</button>
             <span class="back" onclick="close_popup_themsp()">&times;</span>

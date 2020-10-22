@@ -1,4 +1,4 @@
-<!-- <body onload="trang_chinh()"> -->
+<body onload="trang_chinh()">
 <!-- phần tiêu đề của khung -->
 <div class="khung_sp_header">
     <hr class="small_hr">

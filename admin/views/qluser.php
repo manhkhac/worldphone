@@ -1,3 +1,4 @@
+<script src="js/test_add.js"></script>
 <div class="breadcrumb">
 	<span><a href="../index.php">Home</a></span><span> / </span><span>Admin</span><span> / </span><span>Quản lý User</span>
 </div>
@@ -31,7 +32,7 @@
                     <td><?php echo $array['sdt']; ?></td>
                     <td><?php echo $array['email']; ?></td>
                     <td><?php echo $array['gioi_tinh']; ?></td>
-                    <td><?php echo date('m/d/Y', $array['ngsinh'])  ?></td>  
+                    <td><?php echo date('d/m/Y', $array['ngsinh'])  ?></td>  
                     </td>
                 <td>
                     <a onclick="return confirm('Bạn có thực sự muốn xóa user này không?');" href="chuyenhuong.php?page=delete_user&id_user=<?php echo $array['id_user']; ?>">
@@ -64,26 +65,55 @@ if (isset($_POST['add_user'])) {
     $sdt       = $_POST['sdt'];
     $email     = $_POST['email'];
     $gioi_tinh = $_POST['gioi_tinh'];
-    $ngsinh    = $_POST['ngsinh'];
+    $ngsinh    = strtotime($_POST['ngsinh']);
 
-    // $a = '04/03/2020';
-    // echo time($a);
-    // die();
+    $checkSdt = "SELECT *FROM tbl_user where sdt='$sdt'";
+    $querySdt = mysqli_query($conn, $checkSdt);
+    $countSdt = mysqli_num_rows($querySdt);
 
-    $sqlInsert = "INSERT into tbl_user(name, passw, dia_chi, sdt, email, gioi_tinh, ngsinh) VALUES ('$name','$passw','$dia_chi','$sdt','$email','$gioi_tinh','$ngsinh')";
+    if ($countSdt == 1) {
+        $errosSdt = "Số điện thoại đã tồn tại";
+    }
+
+    $checkMail = "SELECT *FROM tbl_user where email='$email'";
+    $queryMail = mysqli_query($conn, $checkMail);
+    $countMail = mysqli_num_rows($queryMail);
+
+    if ($countMail==1) {
+        $errosMail = "Email đã tồn tại";
+    }
+
+    if ($countSdt==0 && $countMail ==0) {
+        $sqlInsert = "INSERT into tbl_user(name, passw, dia_chi, sdt, email, gioi_tinh, ngsinh) VALUES ('$name','$passw','$dia_chi','$sdt','$email','$gioi_tinh','$ngsinh')";
 
         $queryInsert = mysqli_query($conn, $sqlInsert);
 
         if ($queryInsert){
             echo '<script>
                 alert("Thêm thành công!");
-                header("Location: chuyenhuong.php?page=qluser");
+                window.location = "chuyenhuong.php?page=qluser";
             </script>';
-            //$_SESSION['noti'] = 1;
-            
+            //$_SESSION['noti'] = 1;   
         }
-    
+        else if($countSdt!=0 || $countMail !=0) {
+             echo '<script>
+                    alert("Thêm thất bại!");
+                    window.location = "chuyenhuong.php?page=qluser";
+                </script>';
+            ?>
+                <div class="popup-themsp" style="display: block;">
+                <div class="popup-themsp__content" style="display: block;width: 500px;">
+        
+            <?php
+        }
+    }
 }
+
+    // $date1 = "02/05/2020";
+    // $timestamp1 = strtotime($date1);
+    // echo $timestamp1;
+
+    
 ?>
 
 <form action="" method="POST" role="form">
@@ -104,15 +134,21 @@ if (isset($_POST['add_user'])) {
             <div class="popup-themsp-left__input"><input name="name" class="them-user" type="text" required=""></div>
             <div class="popup-themsp-left__input"><input name="passw" class="them-user" type="text" required=""></div>
             <div class="popup-themsp-left__input"><input name="dia_chi" class="them-user" type="text" required=""></div>
-            <div class="popup-themsp-left__input"><input name="sdt" class="them-user" type="number" required=""></div>
-            <div class="popup-themsp-left__input"><input name="email" class="them-user" type="email" required=""></div>
+            <div class="popup-themsp-left__input"><input name="sdt" class="them-user" type="number" required="">
+                <p style="color: red; font-size: smaller;">
+                        <?php if(isset($errosSdt)){ echo $errosSdt; } ?>
+                </p></div>
+            <div class="popup-themsp-left__input"><input name="email" class="them-user" type="email" required="">
+                <p style="color: red; font-size: smaller;" >
+                        <?php if(isset($errosMail)){ echo $errosMail; } ?>
+                </p></div>
             <div class="popup-themsp-left__input"><input name="gioi_tinh" class="them-user" type="text" required=""></div>
             <div class="popup-themsp-left__input"><input name="ngsinh" class="them-user" type="date" required=""></div>
         </div>
         <button type="submit" name="add_user" class="popup-themsp__btn">Thêm</button>
         <span class="back" onclick="close_popup_themsp()">&times;</span>
     </div>
-    <script src="js/test_add.js"></script>
+    
 </div>
 </form>
 <!-- End Them User -->
