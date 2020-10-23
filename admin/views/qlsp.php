@@ -28,7 +28,7 @@
 
     // BƯỚC 3: TÌM LIMIT VÀ CURRENT_PAGE
     $current_page = isset($_GET['page_trang']) ? $_GET['page_trang'] : 1;
-    $limit = 5;
+    $limit = 10 ;
 
     // BƯỚC 4: TÍNH TOÁN TOTAL_PAGE VÀ START
     // tổng số trang

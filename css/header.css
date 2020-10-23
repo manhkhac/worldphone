@@ -27,7 +27,7 @@
     outline: 0;
 }
 
-.search_bar input[type=button] {
+.search_bar input[type=submit] {
     height: 42px;
     width: 60px;
     border: 1px solid #ff9a00;
@@ -37,7 +37,7 @@
     outline: 0;
 }
 
-.search_bar input[type=button]:hover {
+.search_bar input[type=submit]:hover {
     background: #ff7300;
     cursor: pointer;
 }

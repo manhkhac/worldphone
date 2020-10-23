@@ -1,13 +1,16 @@
 <a href="index.php" class="logo_worldphone">
     <img src="image/worldphone_logo.png" alt="image/worldphone_logo">
 </a>
-<div class="search_and_cart">
-    <div class="search_bar">
-        <input type="text" id="search_txt" placeholder="Tìm ở world phone"><input onclick="search()" type="button" value="TÌM">
-        <a href="gio_hang.php" class="gio_hang"><img src="image/icon/icon-cart.png" alt=""></a>
-        <div class="title_tim_nang_cao" onclick="window.location.href='index.php?search=xxx&-1&-1'">TÌM KIẾM NÂNG CAO</div>
+<form action="index.php?page=tim_kiem" method="get">
+    <div class="search_and_cart">
+        <div class="search_bar">
+            <input type="text" name="search" id="search_txt" placeholder="Tìm ở world phone"><input <!-- onclick="search() -->" type="submit" name="submit" value="TÌM">
+            <a href="gio_hang.php" class="gio_hang"><img src="image/icon/icon-cart.png" alt=""></a>
+            <div class="title_tim_nang_cao" onclick="window.location.href='index.php?search=xxx&-1&-1'">TÌM KIẾM NÂNG CAO</div>
+        </div>
     </div>
-</div>
+</form>
+
 <div class="nav_wrap">
     <div class="nav">
         <div id="dia_diem">

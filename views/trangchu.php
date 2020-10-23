@@ -65,7 +65,7 @@
     <span class="big_txt">BEST SELLERS</span>
 
     <?php 
-        $sql = "SELECT hinh,tensp,gia FROM tbl_sanpham";
+        $sql = "SELECT hinh,tensp,gia FROM tbl_sanpham limit 8";
         $query = mysqli_query($conn,$sql);
             while(  $array = mysqli_fetch_array($query))
             {
