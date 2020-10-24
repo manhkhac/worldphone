@@ -1,13 +1,13 @@
 <?php
-        if (isset( $_GET['submit']) && $_GET["search"] != '') {
-            $search = $_GET['search'];
+    if (isset( $_GET['submit']) && $_GET["search"] != '') {
+        $search = $_GET['search'];
         $query = "SELECT * FROM tbl_sanpham WHERE (tensp like '%$search%') OR (chi_tiet like '%$search%') ";
-     
-            $sql = mysqli_query($conn, $query);
-            $num = mysqli_num_rows($sql);
-            //echo $num;
-            if ($num > 0) {
-            ?>
+ 
+        $sql = mysqli_query($conn, $query);
+        $num = mysqli_num_rows($sql);
+        //echo $num;
+        // if ($num > 0) {
+        ?>
 <div class="khung_sp_header">
     <hr class="small_hr" style="width: 50px">
     <span class="small_txt">KẾT QUẢ TÌM KIẾM: (<?php echo $num ?>) - TỪ KHOÁ: (<?php echo $search ?>)</span>
@@ -17,9 +17,9 @@
 <!-- phần tiêu đề của khung -->
  <!-- BƯỚC 2: TÌM TỔNG SỐ RECORDS -->
     <?php 
-        // $result = mysqli_query($conn, 'select count(tensp) WHERE (tensp) as total from tbl_sanpham');
-    //$row = mysqli_fetch_assoc($result);
-    $total_records = $num;
+    $result = mysqli_query($conn, 'select count(tensp) WHERE (tensp) as total from tbl_sanpham');
+    $row = mysqli_fetch_assoc($result);
+    $total_records = $row;
 
 
     // BƯỚC 3: TÌM LIMIT VÀ CURRENT_PAGE
@@ -45,8 +45,8 @@
     // Có limit và start rồi thì truy vấn CSDL lấy danh sách
     $result = mysqli_query($conn, "SELECT * FROM tbl_sanpham LIMIT $start, $limit");
 
-            while(  $array = mysqli_fetch_array($result))
-            {
+        while(  $array = mysqli_fetch_array($result))
+        {
     ?>
     <div class="product-box">
         <a class="box" href="thong_tin_sp.php?' + i + '&0">

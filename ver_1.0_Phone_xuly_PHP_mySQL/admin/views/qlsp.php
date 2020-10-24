@@ -47,7 +47,9 @@
 
     // BƯỚC 5: TRUY VẤN LẤY DANH SÁCH
     // Có limit và start rồi thì truy vấn CSDL lấy danh sách
-    $result = mysqli_query($conn, "SELECT * FROM tbl_sanpham LIMIT $start, $limit");
+    $result = mysqli_query($conn, "SELECT tbl_sanpham.hinh, tbl_sanpham.tensp, tbl_sanpham.gia, tbl_danhmuc.ten,tbl_sanpham.masp, tbl_danhmuc.hien_thi
+FROM tbl_sanpham, tbl_danhmuc
+WHERE tbl_sanpham.id_dm = tbl_danhmuc.id_danhmuc LIMIT $start, $limit");
                 
                 $stt = 0;
                 while ($array = mysqli_fetch_array($result)){
@@ -58,7 +60,7 @@
                 <td><img src="../<?php echo $array['hinh']; ?>" width="110px"></td>
                 <td><?php echo $array['tensp']; ?></td>
                 <td><?php echo $array['gia']; ?></td>
-                <td><?php echo $array['loai']; ?></td>
+                <td><?php echo $array['ten']; ?></td>
                 <td><?php echo $array['masp']; ?></td>
                 <td><?php echo $array['hien_thi']; ?></td>  
                 </td>

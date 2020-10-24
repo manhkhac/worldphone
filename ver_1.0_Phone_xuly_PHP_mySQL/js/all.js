@@ -828,24 +828,24 @@ function check_tai_khoan() {
 }
 
 //Kiểm tra khớp tài khoản
-function dang_nhap_fuc() {
-    if (localStorage.getItem('tai_khoan')) {
-        var n = document.getElementById('dangnhap').value;
-        var p = document.getElementById('matkhau').value;
-        var tk = localStorage.getItem('tai_khoan');
-        tk = JSON.parse(tk);
-        if ((n == tk.email || n == tk.sdt) && p == tk.mat_khau) {
-            tk.trang_thai_dang_nhap = 1;
-            localStorage.setItem('tai_khoan', JSON.stringify(tk));
-            alert('Đăng nhập thành công');
-            window.location = 'index.php';
-        } else {
-            alert('Tài khoản không tồn tại');
-        }
-    } else {
-        alert('Tài khoản không tồn tại');
-    }
-}
+// function dang_nhap_fuc() {
+//     if (localStorage.getItem('tai_khoan')) {
+//         var n = document.getElementById('dangnhap').value;
+//         var p = document.getElementById('matkhau').value;
+//         var tk = localStorage.getItem('tai_khoan');
+//         tk = JSON.parse(tk);
+//         if ((n == tk.email || n == tk.sdt) && p == tk.mat_khau) {
+//             tk.trang_thai_dang_nhap = 1;
+//             localStorage.setItem('tai_khoan', JSON.stringify(tk));
+//             alert('Đăng nhập thành công');
+//             window.location = 'index.php';
+//         } else {
+//             alert('Tài khoản không tồn tại');
+//         }
+//     } else {
+//         alert('Tài khoản không tồn tại');
+//     }
+// }
 
 //Đưa dữ liệu đăng ký xuống localS
 function dang_ky_func(e) {

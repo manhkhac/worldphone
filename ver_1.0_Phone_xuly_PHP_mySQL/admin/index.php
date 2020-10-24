@@ -1,11 +1,9 @@
 <?php  
-     session_start();
-//session_destroy();
+    session_start();
+    if (isset($_SESSION['id'])) {
+        header("Location: chuyenhuong.php");
+    }
     include_once '../config/connect.php';
-
-    // if (!isset($_SESSION['id'])) {
-    //      header('Location: index.php');
-    // }
 
     if (isset($_POST['sm_login'])) {
         $userName = mysqli_real_escape_string($conn, $_POST['user']); // chống tấn công sql_injection

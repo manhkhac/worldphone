@@ -8,11 +8,15 @@
         $query = mysqli_query($conn, $sql); // Thực thi câu lệnh truy vấn
         $count = mysqli_num_rows($query); // Đếm số bản ghi trả ra sau khi truy vấn
         $row = mysqli_fetch_array($query);
+        echo $count;
 
         if ($count == 1) {
             // $_SESSION['id'] = $row['id_user'];
             // $_SESSION['name'] = $row['name'];
-            header("Location: index.php?page=trangchu");
+            echo "<script>
+                alert('Đăng nhập thành công!');
+                window.location = 'index.php?page=trangchu';
+            </script>";
         }else{
             $errors = "Username hoặc Password không đúng!";
         }
@@ -39,14 +43,14 @@
                         <!--dangnhap-->
                         <DIV class="item-login">
                             <p class="font-login">Đăng nhập:</p>
-                            <input id="dangnhap" class="login" type="text" placeholder="Email hoặc số điện thoại" onKeyUp="check()">
+                            <input id="dangnhap" name="user" class="login" type="text" placeholder="Email" onKeyUp="check()">
                             <p class="login-last" id="bk1">Hãy nhập đầy đủ thông tin!</p>
                         </DIV>
                         <!--het dangnhap-->
                         <!--mat khau-->
                         <div class="item-login">
                             <p class="font-login">Mật khẩu:</p>
-                            <input class="login" id="matkhau" type="password" placeholder="Tối thiểu 6 ký tự" onKeyUp="check()">
+                            <input class="login" name="passw" id="matkhau" type="password" placeholder="Tối thiểu 5 ký tự" onKeyUp="check()">
                             <p class="login-last" id="bk2">Hãy nhập đầy đủ thông tin!</p>
                         </div>
                         <!--het mat khau-->
@@ -62,7 +66,7 @@
                 <div class="dangnhap-l" style="margin-top: 30px;">
                     <!-- login-->
                     <div class="item-login">
-                        <input type="button" class="submit" name="submit" value="ĐĂNG NHẬP" onClick="sub()">
+                        <input type="submit" class="submit" name="sm_login" value="ĐĂNG NHẬP" onClick="sub()">
                         <P class="font-login">Hoặc đăng nhập bằng: </P>
                     </div>
                     <!--het login-->
@@ -97,7 +101,7 @@
     document.getElementById('bk1').style.display = 'none';
     document.getElementById('dangnhap').style.borderColor = 'rgb(186, 186, 186)';
     }
-    if (mk == "" || mk.length < 6) {
+    if (mk == "" || mk.length < 5) {
     document.getElementById('matkhau').style.borderColor = 'red';
     } else {
     document.getElementById('bk2').style.display = 'none';
@@ -110,8 +114,8 @@
     if (tk == "" || mk == "") {
     alert("Vui lòng không bỏ trống các thông tin!");
     } else
-    if (mk.length < 6) {
-    alert('Mật khẩu phải trên 6 ký tự');
+    if (mk.length <5) {
+    alert('Mật khẩu phải trên 5 ký tự');
     } else {
     dang_nhap_fuc();
     }

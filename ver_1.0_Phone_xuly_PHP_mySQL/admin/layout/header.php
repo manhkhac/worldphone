@@ -6,7 +6,7 @@
                 echo $_SESSION['name'];
             } 
         ?>  - </div>
-    <a href="xuly/logout.php">
+    <a href="chuyenhuong.php?page=logout">
         <div style="font-size: 15px;margin:17px 8px 0 8px">Đăng Xuất</div>
     </a>
 </div>
