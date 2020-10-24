@@ -1,1 +1,0 @@
-<div>Powered by <a href="../index.php"> World Phone</a></div>
