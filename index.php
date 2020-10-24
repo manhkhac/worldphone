@@ -33,7 +33,7 @@
                     $page = $_GET['page'];
                 }else{
                     $page = 'trangchu';
-                    $page = 'tim_kiem';
+                   
                 }
 
                 if (file_exists('views/'.$page.'.php')) {
