@@ -13,18 +13,37 @@
 			<th>Hiển Thị</th>
 			<th>Thao tác</th>
 		</tr>
+
 	</thead>
-	<tbody>
-<!-- 		<tr>
-			<td>1</td>
-			<td>Dien thoai</td>
-			<td>1</td>
-			<td>Hiện</td>
-			<td>
-				<button class="xoa_sp">Xoá</button><br>
-				<button class="sua_sp">Sửa</button>
-			</td>
-		</tr> -->
+	<tbody>	
+        <?php
+                    $sql = "SELECT *FROM tbl_danhmuc";
+                    $query = mysqli_query($conn, $sql);
+                    $stt = 0;
+                    while ($array = mysqli_fetch_array($query)){
+                    $stt += 1;
+                ?>
+                <tr>
+                    <td><?php echo $stt; ?></td>
+                    <td><?php echo $array['ten']; ?></td>
+                    <td><?php echo $array['thu_tu']; ?></td>
+                    <td><?php echo $array['hien_thi']; ?></td>
+                    
+                    </td>
+                <td>
+                    <a onclick="return confirm('Bạn có thực sự muốn xóa user này không?');" href="chuyenhuong.php?page=delete_user&id_user=<?php echo $array['id_user']; ?>">
+                        <button class="xoa_sp">Xóa</button><br>
+                    </a>
+
+                    <a href="chuyenhuong.php?page=edit_user&update_id=<?php echo $array['id_user']; ?>">
+                        <button class="sua_sp">Sửa</button>
+                    </a>
+                    
+                </td>
+            </tr>
+    <?php
+        }
+    ?>
 	</tbody>
 </table>
 

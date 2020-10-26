@@ -31,13 +31,35 @@
 			</tr>
 		</thead>
 		<tbody>
-			<!-- <tr>
-					<td>1</td>
-					<td>Nguyễn An Ninh</td>
-					<td>25/07/2015</td>
-					<td>item 4</td>
-					<td>item 5</td>
-			</tr> -->
+			 <?php
+                    $sql = "SELECT *FROM tbl_donhang";
+                    $query = mysqli_query($conn, $sql);
+                    $stt = 0;
+                    while ($array = mysqli_fetch_array($query)){
+                    $stt += 1;
+                ?>
+                <tr>
+                    <td><?php echo $stt; ?></td>
+                    <td><?php echo $array['khach_hang']; ?></td>
+                    <td><?php echo $array['thoi_diem']; ?></td>
+                    <td><?php echo $array['tong_tien']; ?></td>
+                    <td><?php echo $array['tinh_trang']; ?></td>
+                    
+                    </td>
+                <td>
+                    <a onclick="return confirm('Bạn có thực sự muốn xóa user này không?');" href="chuyenhuong.php?page=delete_user&id_user=<?php echo $array['id_user']; ?>">
+                        <button class="xoa_sp">Xóa</button><br>
+                    </a>
+
+                    <a href="chuyenhuong.php?page=edit_user&update_id=<?php echo $array['id_user']; ?>">
+                        <button class="sua_sp">Sửa</button>
+                    </a>
+                    
+                </td>
+            </tr>
+    <?php
+        }
+    ?>
 		</tbody>
 	</table>
 </div>
